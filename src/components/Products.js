@@ -14,8 +14,9 @@ export class Products extends Component {
                             <img src={product.image} alt={product.title}></img>
                             <h4>{product.title}</h4>
                             <div>{formatCurrency(product.price)}</div>
-                            <button className="button primary">Add To Cart</button>
-                          </a> 
+                            </a>  
+                            <button onClick={()=>this.props.addToCart(product)} className="button primary">Add To Cart</button>
+                          
                           </div>  
                         </li>
                     ))}
