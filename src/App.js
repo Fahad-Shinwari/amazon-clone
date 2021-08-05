@@ -11,19 +11,28 @@ class App extends React.Component {
       products:data.products,
       size:"",
       sort:"",
-      cartItems:[]
+      cartItems: 
+      localStorage.getItem("cartItems") ?
+      JSON.parse(localStorage.getItem("cartItems")) :
+      []
     }
   }
 
+  createOrder = order =>{
+    alert(order.name)
+  }
+
   removeFromCart = (product) =>{
-    console.log(product);
     const cartItems = this.state.cartItems.slice()
-    
     this.setState({
       cartItems:cartItems.filter(item=>
-        item !== product
+        item._id !== product._id
       )
     })
+    localStorage.setItem("cartItems",JSON.stringify( 
+      cartItems.filter(item=>
+      item._id !== product._id
+    )))
   }
 
   addToCart = (product) =>{
@@ -45,6 +54,7 @@ class App extends React.Component {
     this.setState({
       cartItems
     })
+    localStorage.setItem("cartItems",JSON.stringify(this.state.cartItems))
   }
 
 
@@ -97,7 +107,14 @@ class App extends React.Component {
                    filterProducts = {this.filterProducts}
                    />
                   <Products products={this.state.products} addToCart={this.addToCart}  /></div>
-                <div className="sidebar"><Cart cartItems={this.state.cartItems} removeFromCart={this.removeFromCart}/></div>
+                <div className="sidebar">
+                  <Cart
+                   cartItems={this.state.cartItems}
+                   removeFromCart={this.removeFromCart}
+                   createOrder={this.createOrder}
+                   />
+                   
+                   </div>
             </div>
           </main>
           <footer>Footer try</footer>
