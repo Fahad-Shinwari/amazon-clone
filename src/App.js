@@ -3,6 +3,8 @@ import Products from "./components/Products";
 import Filter from "./components/Filter";
 import data from './data.json'
 import Cart from "./components/Cart";
+import { Provider } from "react-redux";
+import store from "./store";
 
 class App extends React.Component {
   constructor(){
@@ -92,8 +94,8 @@ class App extends React.Component {
 
   }
   render(){
-    console.log(this.state.cartItems);
     return (
+      <Provider store={store}>
       <div className="App">
           <header>Header</header>
           <main>
@@ -119,6 +121,7 @@ class App extends React.Component {
           </main>
           <footer>Footer try</footer>
       </div>
+      </Provider>
     );
   }   
 }
