@@ -31,7 +31,6 @@ export default class Cart extends Component {
 
     }
     render() {
-        console.log(this.props.cartItems);
         return (
             <>
             <div>
