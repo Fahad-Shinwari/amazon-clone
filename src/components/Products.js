@@ -31,7 +31,7 @@ class Products extends Component {
             <div>Loading...</div>
           ) : (
             <ul className="products">
-              {this.props.products.map((product) => (
+              {this.props.products && this.props.products.map((product) => (
                 <li key={product._id}>
                   <div className="product">
                     <a
@@ -100,7 +100,7 @@ class Products extends Component {
   }
 }
 export default connect(
-  (state) => ({ products: state.products.items }),
+  (state) => ({ products: state.products.filteredItems }),
   {
     fetchProducts
   }
